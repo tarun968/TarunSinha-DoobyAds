@@ -59,7 +59,7 @@ exports.getAllImages = async (req, res) => {
     if (!x) {
         return res.json({ error: 'Error in the database' })
     }
-    console.log("x",x)
+    // console.log("x",x)
     return res.json({
         message: x.ImageProduct
     })
@@ -131,7 +131,7 @@ exports.getPhoto = async (req, res, next) => {
     if (imagesarray) {
         console.log("images array",)
         res.set('Content-Type', imagesarray[0].ImageProduct[0].contentType)
-        res.send(imagesarray[0].ImageProduct[0].data)
+        return res.send(imagesarray[0].ImageProduct[0].data)
     }
     next();
 }
