@@ -19,7 +19,7 @@ export const getAllImagesofUser = async (Token, UserId) => {
     // /images/:user
     console.log(Token, UserId)
     try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/All-Images/${UserId}`, {
+        const response = await fetch(`/All-Images/${UserId}`, {
             method: 'GET',
             headers: {
                 Accept: "application/json",
@@ -35,7 +35,7 @@ export const getAllImagesofUser = async (Token, UserId) => {
 export const getSpecifiedImage = async(Token,UserId,Value) => {
     console.log(Token,UserId)
     try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/${UserId}?imageName=${Value}`, {
+        const response = await fetch(`/${UserId}?imageName=${Value}`, {
             method: 'GET',
             headers: {
                 Accept: "application/json",
@@ -52,14 +52,15 @@ export const getSpecifiedImage = async(Token,UserId,Value) => {
 export const getSpecifiedImagePrice = async(Token,UserId,Value) => {
     console.log(Token,UserId)
     try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/${UserId}?priceImage=${Value}`, {
+        const response = await fetch(`/${UserId}?priceImage=${Value}`, {
             method: 'GET',
             headers: {
                 Accept: "application/json",
                 Authorization: `Bearer ${Token}`
             },
         })
-        return await response.json()
+        console.log("response",response)
+        return await response.text()
     } catch (err) {
         return console.log(err)
     }   

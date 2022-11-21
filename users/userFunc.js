@@ -59,6 +59,7 @@ exports.getAllImages = async (req, res) => {
     if (!x) {
         return res.json({ error: 'Error in the database' })
     }
+    console.log("x",x)
     return res.json({
         message: x.ImageProduct
     })
@@ -137,11 +138,12 @@ exports.getPhoto = async (req, res, next) => {
 
 exports.getImageOne = (req, res, next, id) => {
     console.log('id of image', id)
+    console.log("",req.params.user)
     UserModel.findOne({ _id: req.params.user }).exec((err, founded) => {
         if (err) {
             return res.json({ error: 'No user found ' })
         }
-        req.Images = founded.ImageProduct
+        // req.Images = founded.ImageProduct
         next();
     })
 }

@@ -49,6 +49,7 @@ const ImageUploaded = () => {
     const specificImagesbyPrice = (name) => (event) => {
         getSpecifiedImagePrice(Token, user._id, event.target.value).then(
             data => {
+                console.log("",data)
                 if (data.error) {
                     console.log(data.error)
                 }
