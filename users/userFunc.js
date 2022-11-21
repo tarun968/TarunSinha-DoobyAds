@@ -59,7 +59,7 @@ exports.getAllImages = async (req, res) => {
     if (!x) {
         return res.json({ error: 'Error in the database' })
     }
-    // console.log("x",x)
+    console.log("x",x)
     return res.json({
         message: x.ImageProduct
     })

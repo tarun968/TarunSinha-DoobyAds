@@ -19,7 +19,7 @@ export const getAllImagesofUser = async (Token, UserId) => {
     // /images/:user
     console.log(Token, UserId)
     try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/All-Images/${UserId}`, {
+        const response = await fetch(`/All-Images/${UserId}`, {
             method: 'GET',
             headers: {
                 Accept: "application/json",
