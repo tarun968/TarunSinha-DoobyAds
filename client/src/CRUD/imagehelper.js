@@ -9,7 +9,7 @@ export default function ImageHelper({user}) {
     // const NameImage  = getOneImage(Token,user.userid,user.ImageId)
     // console.log(user.ImageId)
     return  (
-        <img src={`Image/${user.userid}/photo/${user.id}/`} 
+        <img src={`https://fair-teal-moth-tux.cyclic.app/Image/${user.userid}/photo/${user.id}/`} 
         style = {{height:'100 px'}}
         />
     )
