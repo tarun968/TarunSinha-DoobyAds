@@ -59,7 +59,7 @@ exports.getAllImages = async (req, res) => {
     if (!x) {
         return res.json({ error: 'Error in the database' })
     }
-    console.log("x",x)
+    // console.log("x",x)
     return res.json({
         message: x.ImageProduct
     })
@@ -68,7 +68,7 @@ exports.getAllImages = async (req, res) => {
 
 exports.getSpecifiedImages = async (req, res) => {
     const filters = req.query;
-    console.log(filters)
+    // console.log(filters)
     const DesiredUser = await UserModel.findOne({ _id: req.auth._id, Name: req.auth.Name })
     if (req.query.imageName.length === 0) {
         return res.json({ message: DesiredUser.ImageProduct });
@@ -76,8 +76,8 @@ exports.getSpecifiedImages = async (req, res) => {
     const FilteredImages = await DesiredUser.ImageProduct.filter(user => {
         let isValid = true;
         for (key in filters) {
-            console.log('key', key)
-            console.log(key, user[key], filters[key]);
+            // console.log('key', key)
+            // console.log(key, user[key], filters[key]);
             isValid = isValid && user[key] == filters[key];
         }
         return isValid;
@@ -98,15 +98,15 @@ exports.getSpecifiedImagesByPrice = async (req, res) => {
     const FilteredImages = await DesiredUser.ImageProduct.filter(user => {
         let isValid = true;
         for (key in filters) {
-            console.log('key', key)
-            console.log(key, user[key], Number(filters[key]));
+            // console.log('key', key)
+            // console.log(key, user[key], Number(filters[key]));
             isValid = isValid && user[key] == Number(filters[key]);
         }
         return isValid;
     });
     console.log(FilteredImages.length)
     if (FilteredImages.length === 0) {
-        console.log(FilteredImages.length)
+        // console.log(FilteredImages.length)
         return res.json({ message: DesiredUser.ImageProduct });
     }
     if (FilteredImages.length === 1) {
@@ -129,7 +129,7 @@ exports.getPhoto = async (req, res, next) => {
             }
         })
     if (imagesarray) {
-
+        console.log("images array",)
         res.set('Content-Type', imagesarray[0].ImageProduct[0].contentType)
         res.send(imagesarray[0].ImageProduct[0].data)
     }

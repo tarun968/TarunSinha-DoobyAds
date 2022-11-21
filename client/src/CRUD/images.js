@@ -19,7 +19,7 @@ const ImageUploaded = () => {
             }
         })
     }
-    console.log(Images)
+    // console.log(Images)
     useEffect(() => {
         preload()
     }, [])
