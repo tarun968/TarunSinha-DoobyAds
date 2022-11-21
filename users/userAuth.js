@@ -19,7 +19,7 @@ var { expressjwt: jwtk } = require("express-jwt");
 // }
 exports.isSignedIn = jwtk(
     {
-        secret: process.env.SECRET,
+        secret: `${process.env.SECRET}`,
         userProperty: "auth1",
         algorithms: ['sha1', 'HS256', 'RS256']
 })
