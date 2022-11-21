@@ -130,8 +130,8 @@ exports.getPhoto = async (req, res, next) => {
         })
     if (imagesarray) {
         console.log("images array",imagesarray[0].ImageProduct[0].contentType)
-        res.set('Content-Type', imagesarray[0].ImageProduct[0].contentType)
-        return res.send(imagesarray[0].ImageProduct[0].data)
+        // res.set('Content-Type', imagesarray[0].ImageProduct[0].contentType)
+        return res.json(imagesarray)
     }
     next();
 }

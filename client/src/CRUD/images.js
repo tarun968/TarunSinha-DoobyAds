@@ -102,6 +102,9 @@ const ImageUploaded = () => {
                         <th>Image</th>
                     </tr>
                     {Images.map((details, index) => {
+                        const base64String = btoa(
+                                String.fromCharCode(...new Uint8Array(details.data.data))
+                        )
                         return (
                             <tr>
                                 <td className="border border-2 border-dark">{details.priceImage}
@@ -109,7 +112,10 @@ const ImageUploaded = () => {
                                 <td className="border border-2 border-dark">{details.imageName}
                                 </td>
                                 <td className="border border-2 border-dark" >
-                                    <ImageHelper user={{ userid: user._id, id: details._id }} />
+                                <img src={`data:image/jpeg;base64,${base64String}`}/>
+
+                                    {/* <ImageHelper user={{ userid: user._id, id: details._id }} /> */}
+                                    {/* <img src=/>                                    /                       */}
                                 </td>
                             </tr>
                         )
