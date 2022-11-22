@@ -6,13 +6,11 @@ import { AddTheImage } from "./imgapicalls";
 import { Navigate } from "react-router-dom";
 export default function ImageForm() {
     const { user, Token } = isAuthenticated()
-    // console.log(user)
-    // console.log(isAuthenticated())
     const [ImageValues, SetImageValues] = useState({
         imageName: "",
         ImageProduct: "",
         priceImage: "",
-        NewProduct:"",
+        NewProduct: "",
         loading: false,
         error: false,
         formData: "",
@@ -20,7 +18,7 @@ export default function ImageForm() {
     })
 
     const { imageName, loading,
-        error, ImageProduct,NewProduct, priceImage, formData } = ImageValues
+        error, ImageProduct, NewProduct, priceImage, formData } = ImageValues
 
     const preload = () => {
         SetImageValues({ ...ImageValues, formData: new FormData() })
@@ -41,11 +39,11 @@ export default function ImageForm() {
                     ...ImageValues,
                     NameofProduct: "",
                     ImageProduct: "",
-                    NewProduct:data.message,
+                    NewProduct: data.message,
                     error: true,
                     loading: false,
                 });
-                <Navigate to = "/Images"/>
+                <Navigate to="/Images" />
             }
         });
     }
@@ -60,7 +58,7 @@ export default function ImageForm() {
     const SuccessMessage = () => {
         return (
             <div className="alert alert-success mt-3"
-            style={{display:NewProduct ? "":"none"}}
+                style={{ display: NewProduct ? "" : "none" }}
             >
                 <h4>{NewProduct} </h4>
             </div>
@@ -68,7 +66,7 @@ export default function ImageForm() {
         )
     }
 
-    
+
 
     return (
         <>
@@ -76,7 +74,7 @@ export default function ImageForm() {
             <div className="col-md-12">
                 <div className="h-100 w-75 mx-auto bg-white">
                     <form className="p-5 mx-auto">
-
+ 
                         <div className="mb-3">
                             <label for="formGroupExampleInput6" className="form-label" style={{ fontWeight: 'bold' }}>PhotoGraph of the Product</label>
                             <input type="file"
@@ -87,8 +85,6 @@ export default function ImageForm() {
                                 name="ImageProduct"
                             />
                         </div>
-
-
                         <label for="formGroupExampleInput4" className="form-label" style={{ fontWeight: 'bold' }}>Image Name</label>
                         <input
                             type='text'

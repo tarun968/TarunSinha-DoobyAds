@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAllImagesofUser } from "./imgapicalls";
 import { isAuthenticated } from "../Auth/apicalls";
-import { getSpecifiedImage,getSpecifiedImagePrice } from "./imgapicalls";
+import { getSpecifiedImage, getSpecifiedImagePrice } from "./imgapicalls";
 import ImageHelper from "./imagehelper";
 const ImageUploaded = () => {
     const [Images, SetImages] = useState([])
+    const [selected, setselected] = useState("")
+    const handleSelected = (event) => {
+        setselected(event.target.value)
+    }
     const { user, Token } = isAuthenticated()
     const preload = () => {
         getAllImagesofUser(Token, user._id).then(data => {
@@ -49,7 +53,7 @@ const ImageUploaded = () => {
     const specificImagesbyPrice = (name) => (event) => {
         getSpecifiedImagePrice(Token, user._id, event.target.value).then(
             data => {
-                console.log("",data)
+                console.log("", data)
                 if (data.error) {
                     console.log(data.error)
                 }
@@ -73,16 +77,24 @@ const ImageUploaded = () => {
             <Menu />
             <div className="container-fluid">
                 <form className="p-5 mx-auto">
-                    <div className="mb-1">
-                        <label for="formGroupExampleInput6" className="form-label" style={{ fontWeight: 'bold' }}>Name of Photo</label>
-                        <input type="text"
-                            // accept="image"
-                            className="form-control"
-                            id="formGroupExampleInput6"
-                            onChange={specificImagesbyName("ImageProduct")}
-                        // name="ImageProduct"
-                        />
-                    </div>
+                    <select onChange={handleSelected}>
+                        <p>Search by</p>
+                        <option value="Name">Name</option>
+                        <option value="Price">Price</option>
+                    </select>
+                    {selected === 'Name' &&
+                        <div className="mb-1">
+                            <label for="formGroupExampleInput6" className="form-label" style={{ fontWeight: 'bold' }}>Name of Photo</label>
+                            <input type="text"
+                                // accept="image"
+                                className="form-control"
+                                id="formGroupExampleInput6"
+                                onChange={specificImagesbyName("ImageProduct")}
+                            // name="ImageProduct"
+                            />
+                        </div>
+                    }
+                    {selected === 'Price' &&
                     <div className="mb-1">
                         <label for="formGroupExampleInput6" className="form-label" style={{ fontWeight: 'bold' }}>Price of Photo</label>
                         <input type="text"
@@ -93,6 +105,8 @@ const ImageUploaded = () => {
                         // name="ImageProduct"
                         />
                     </div>
+                    }
+                    
                 </form>
 
                 <table className="mt-1 table border border-3 border-dark mx-auto">
@@ -103,7 +117,7 @@ const ImageUploaded = () => {
                     </tr>
                     {Images.map((details, index) => {
                         const base64String = btoa(
-                                String.fromCharCode(...new Uint8Array(details.data.data))
+                            String.fromCharCode(...new Uint8Array(details.data.data))
                         )
                         return (
                             <tr>
@@ -112,7 +126,7 @@ const ImageUploaded = () => {
                                 <td className="border border-2 border-dark">{details.imageName}
                                 </td>
                                 <td className="border border-2 border-dark" >
-                                <img src={`data:image/jpeg;base64,${base64String}`}/>
+                                    <img src={`data:image/jpeg;base64,${base64String}`} />
 
                                     {/* <ImageHelper user={{ userid: user._id, id: details._id }} /> */}
                                     {/* <img src=/>                                    /                       */}
